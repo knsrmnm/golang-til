@@ -2,18 +2,29 @@ package main
 
 import "fmt"
 
+// Vertex struct
 type Vertex struct {
 	X, Y int
-	S    string
+}
+
+// Scale func : pointer receiver
+func (v *Vertex) Scale(i int) {
+	v.X = v.X * i
+	v.Y = v.Y * i
+}
+
+// Area func : value receiver
+func (v Vertex) Area() int {
+	return v.X * v.Y
+}
+
+// New : constructor
+func New(x, y int) *Vertex {
+	return &Vertex{x, y}
 }
 
 func main() {
-	v := Vertex{X: 1, Y: 2}
-	fmt.Println(v)
-	fmt.Println(v.X, v.Y)
-	v.X = 100
-	fmt.Println(v.X, v.Y)
-
-	var v2 Vertex
-	fmt.Println(v2)
+	v := New(3, 4)
+	v.Scale(10)
+	fmt.Println(v.Area())
 }
