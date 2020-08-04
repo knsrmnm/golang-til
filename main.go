@@ -2,12 +2,18 @@ package main
 
 import "fmt"
 
-func one(x *int) {
-	*x = 1
+type Vertex struct {
+	X, Y int
+	S    string
 }
 
 func main() {
-	var n int = 100
-	one(&n)
-	fmt.Println(n)
+	v := Vertex{X: 1, Y: 2}
+	fmt.Println(v)
+	fmt.Println(v.X, v.Y)
+	v.X = 100
+	fmt.Println(v.X, v.Y)
+
+	var v2 Vertex
+	fmt.Println(v2)
 }
