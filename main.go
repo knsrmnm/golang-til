@@ -3,30 +3,19 @@ package main
 import "fmt"
 
 // Human : struct
-type Human interface {
-	Say() string
-}
-
-type Person struct {
-	Name string
-}
-
-func (p *Person) Say() string {
-	p.Name = "Mr." + p.Name
-	fmt.Println(p.Name)
-	return p.Name
-}
-
-func DriveCar(human Human) {
-	if human.Say() == "Mr.Mike" {
-		fmt.Println("Run")
-	} else {
-		fmt.Println("Out")
+func do(i interface{}) {
+	switch v := i.(type) {
+	case int:
+		fmt.Println(v * 2)
+	case string:
+		fmt.Println(v + "!")
+	default:
+		fmt.Printf("invalid type %T\n", v)
 	}
 }
 
 func main() {
-	var mike Human = &Person{"Mike"}
-	//mike.Say()
-	DriveCar(mike)
+	do(10)
+	do("Mike")
+	do(true)
 }
