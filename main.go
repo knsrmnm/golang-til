@@ -2,16 +2,24 @@ package main
 
 import "fmt"
 
-type Person struct {
-	Name string
-	Age  int
+type UserNotFound struct {
+	UserName string
 }
 
-func (p Person) String() string {
-	return fmt.Sprintf("My name is %v.", p.Name)
+func (e *UserNotFound) Error() string {
+	return e.UserName
+}
+
+func myFunc() error {
+	ok := false
+	if ok {
+		return nil
+	}
+	return &UserNotFound{UserName: "mike"}
 }
 
 func main() {
-	mike := Person{"Mike", 22}
-	fmt.Println(mike)
+	if err := myFunc(); err != nil {
+		fmt.Println(err)
+	}
 }
