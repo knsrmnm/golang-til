@@ -1,25 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
-type UserNotFound struct {
-	UserName string
-}
-
-func (e *UserNotFound) Error() string {
-	return e.UserName
-}
-
-func myFunc() error {
-	ok := false
-	if ok {
-		return nil
+func goroutine(s string, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for i := 0; i < 5; i++ {
+		//time.Sleep(100 * time.Millisecond)
+		fmt.Println(s)
 	}
-	return &UserNotFound{UserName: "mike"}
+}
+
+func normal(s string) {
+	for i := 0; i < 5; i++ {
+		//time.Sleep(100 * time.Millisecond)
+		fmt.Println(s)
+	}
 }
 
 func main() {
-	if err := myFunc(); err != nil {
-		fmt.Println(err)
-	}
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go goroutine("WORLD", &wg)
+	normal("HELLO")
+	//time.Sleep(2000 * time.Millisecond)
+	wg.Wait()
 }
