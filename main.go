@@ -2,18 +2,11 @@ package main
 
 import (
 	"fmt"
-	"os/user"
-	"time"
+	"strings"
 )
 
-const Pi = 3.14
-
-func init() {
-	fmt.Println("Init")
-}
-
 func main() {
-	fmt.Println("Hello world", time.Now())
-	fmt.Println(user.Current())
-	fmt.Println(Pi)
+	fmt.Println("Hello" + "World")
+	var s  string = "Hello World"
+	fmt.Println(strings.Replace(s, "H", "X", 1))
 }
