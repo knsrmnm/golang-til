@@ -1,12 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
 func main() {
-	fmt.Println("Hello" + "World")
-	var s  string = "Hello World"
-	fmt.Println(strings.Replace(s, "H", "X", 1))
+	var a [2]int
+	a[0] = 100
+	a[1] = 200
+	fmt.Println(a)
+
+	var b []int = []int{100, 200}
+	b = append(b, 300)
+	fmt.Println(b)
 }
