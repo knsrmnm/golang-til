@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	var a [2]int
-	a[0] = 100
-	a[1] = 200
-	fmt.Println(a)
-
-	var b []int = []int{100, 200}
-	b = append(b, 300)
-	fmt.Println(b)
+	var c []int
+	// c = make([]int, 5)
+	c = make([]int, 0, 5)
+	for i := 0; i < 5; i++ {
+		c = append(c, i)
+		fmt.Println(c)
+	}
+	fmt.Println(c)
 }
